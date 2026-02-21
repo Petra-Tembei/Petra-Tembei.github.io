@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[Petra Tembei] — Data Analyst & Scientist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0C0C0E;
+            --surface: #141418;
+            --surface-hover: #1C1C22;
+            --border: #2A2A32;
+            --text: #E8E8EC;
+            --text-secondary: #9494A0;
+            --accent: #5B8DEF;
+            --accent-dim: rgba(91, 141, 239, 0.12);
+            --green: #4ADE80;
+            --green-dim: rgba(74, 222, 128, 0.12);
+            --orange: #FB923C;
+            --orange-dim: rgba(251, 146, 60, 0.12);
+            --font: 'DM Sans', -apple-system, sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== NAV ===== */
+        nav {
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            background: rgba(12, 12, 14, 0.85);
+            backdrop-filter: blur(16px);
+            z-index: 100;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-name {
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: -0.01em;
+        }
+
+        .nav-links { display: flex; gap: 28px; }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: var(--text); }
+
+        /* ===== HERO ===== */
+        .hero {
+            padding: 80px 0 60px;
+        }
+
+        .hero-label {
+            font-family: var(--mono);
+            font-size: 0.8rem;
+            color: var(--accent);
+            letter-spacing: 0.06em;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span { color: var(--text-secondary); }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 620px;
+            line-height: 1.7;
+        }
+
+        .hero-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 32px;
+        }
+
+        .hero-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .btn-primary:hover { background: #4A7CE0; }
+
+        .btn-secondary {
+            background: var(--surface);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover { background: var(--surface-hover); }
+
+        /* ===== SECTION ===== */
+        section { padding: 60px 0; }
+
+        .section-label {
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            color: var(--accent);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 32px;
+        }
+
+        /* ===== SKILLS ===== */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .skill-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .skill-card h3 {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            font-family: var(--mono);
+            font-size: 0.8rem;
+            padding: 4px 12px;
+            border-radius: 6px;
+            background: var(--accent-dim);
+            color: var(--accent);
+        }
+
+        .skill-tag.green { background: var(--green-dim); color: var(--green); }
+        .skill-tag.orange { background: var(--orange-dim); color: var(--orange); }
+
+        /* ===== EXPERIENCE ===== */
+        .exp-list { display: flex; flex-direction: column; gap: 20px; }
+
+        .exp-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 28px;
+            transition: border-color 0.2s;
+        }
+
+        .exp-card:hover { border-color: var(--accent); }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 6px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .exp-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+        }
+
+        .exp-date {
+            font-family: var(--mono);
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .exp-company {
+            font-size: 0.9rem;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        .exp-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .exp-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 14px;
+        }
+
+        .exp-tag {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            padding: 3px 10px;
+            border-radius: 4px;
+            background: var(--surface-hover);
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+        }
+
+        /* ===== PROJECTS ===== */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .project-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 28px;
+            transition: all 0.2s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .project-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .project-status {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            padding: 3px 10px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 14px;
+        }
+
+        .status-live { background: var(--green-dim); color: var(--green); }
+        .status-wip { background: var(--orange-dim); color: var(--orange); }
+
+        .project-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .project-card p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 14px;
+        }
+
+        /* ===== EDUCATION ===== */
+        .edu-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .edu-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .edu-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .edu-card .school {
+            font-size: 0.9rem;
+            color: var(--accent);
+            margin-bottom: 4px;
+        }
+
+        .edu-card .date {
+            font-family: var(--mono);
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* ===== CONTACT ===== */
+        .contact-section {
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .contact-section h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+        }
+
+        .contact-section p {
+            color: var(--text-secondary);
+            margin-bottom: 28px;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            padding: 24px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 640px) {
+            .hero h1 { font-size: 2rem; }
+            .skills-grid, .projects-grid, .edu-grid { grid-template-columns: 1fr; }
+            .exp-header { flex-direction: column; }
+            .hero-links { flex-direction: column; }
+            .hero-links a { text-align: center; justify-content: center; }
+        }
+
+        /* ===== ANIMATIONS ===== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(16px);
+            animation: fadeUp 0.5s ease forwards;
+        }
+
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in:nth-child(1) { animation-delay: 0s; }
+        .fade-in:nth-child(2) { animation-delay: 0.08s; }
+        .fade-in:nth-child(3) { animation-delay: 0.16s; }
+        .fade-in:nth-child(4) { animation-delay: 0.24s; }
+        .fade-in:nth-child(5) { animation-delay: 0.32s; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="container">
+        <div class="nav-name">[Petra Tembei]</div>
+        <div class="nav-links">
+            <a href="#skills">Skills</a>
+            <a href="#experience">Experience</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </div>
+</nav>
+
+<header class="hero">
+    <div class="container">
+        <div class="hero-label fade-in">Data Analyst · Data Scientist · Data Engineer</div>
+        <h1 class="fade-in">[Petra Tembei]<br><span>Turning complex data into clear decisions.</span></h1>
+        <p class="hero-desc fade-in">Bioinformatics & Computational Biology graduate from UMBC with hands-on experience building data pipelines, training ML models, and delivering analytics solutions across healthcare and research. Proficient in Python, R, SQL, and Tableau.</p>
+        <div class="hero-links fade-in">
+            <a href="#projects" class="btn-secondary">View Projects</a>
+            <a href="linkedin.com/in/petra-tembei-09956a23b" class="btn-secondary" target="_blank">LinkedIn</a>
+        </div>
+    </div>
+</header>
+
+<section id="skills">
+    <div class="container">
+        <div class="section-label">What I Work With</div>
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card fade-in">
+                <h3>Languages</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">R</span>
+                    <span class="skill-tag">SQL</span>
+                    <span class="skill-tag">C++</span>
+                </div>
+            </div>
+            <div class="skill-card fade-in">
+                <h3>ML & Data</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag green">scikit-learn</span>
+                    <span class="skill-tag green">pandas</span>
+                    <span class="skill-tag green">NumPy</span>
+                    <span class="skill-tag green">ETL Pipelines</span>
+                </div>
+            </div>
+            <div class="skill-card fade-in">
+                <h3>Platforms & Tools</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag orange">AWS S3</span>
+                    <span class="skill-tag orange">Linux</span>
+                    <span class="skill-tag orange">Tableau</span>
+                    <span class="skill-tag orange">Git</span>
+                </div>
+            </div>
+            <div class="skill-card fade-in">
+                <h3>Practices</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Machine Learning</span>
+                    <span class="skill-tag">Data Quality</span>
+                    <span class="skill-tag">Visualization</span>
+                    <span class="skill-tag">Web Scraping</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="experience">
+    <div class="container">
+        <div class="section-label">Where I've Worked</div>
+        <h2 class="section-title">Experience</h2>
+        <div class="exp-list">
+
+            <div class="exp-card fade-in">
+                <div class="exp-header">
+                    <div class="exp-title">Data Visualization Intern</div>
+                    <div class="exp-date">Dec 2025 – Present</div>
+                </div>
+                <div class="exp-company">Knology</div>
+                <div class="exp-desc">Building a custom R package and R Markdown template to standardize data visualization workflows across projects. Developing web-scraping pipelines for data extraction and designing reusable survey templates with embedded logic.</div>
+                <div class="exp-tags">
+                    <span class="exp-tag">R</span>
+                    <span class="exp-tag">R Markdown</span>
+                    <span class="exp-tag">Web Scraping</span>
+                    <span class="exp-tag">LimeSurvey</span>
+                </div>
+            </div>
+
+            <div class="exp-card fade-in">
+                <div class="exp-header">
+                    <div class="exp-title">Research Assistant – Data Engineering & ML</div>
+                    <div class="exp-date">Jun 2025 – Feb 2026</div>
+                </div>
+                <div class="exp-company">University of Maryland, Baltimore County</div>
+                <div class="exp-desc">Processed 8+ TB of clinical and genomic data from cBioPortal, AACR Project GENIE, and dbGaP. Built AWS S3-to-Linux data pipelines, structured high-dimensional datasets, and trained ML models (scikit-learn) to identify treatment-response drivers in oncology.</div>
+                <div class="exp-tags">
+                    <span class="exp-tag">Python</span>
+                    <span class="exp-tag">AWS</span>
+                    <span class="exp-tag">scikit-learn</span>
+                    <span class="exp-tag">ETL</span>
+                    <span class="exp-tag">Genomics</span>
+                </div>
+            </div>
+
+            <div class="exp-card fade-in">
+                <div class="exp-header">
+                    <div class="exp-title">Data Engineering Intern</div>
+                    <div class="exp-date">May – Aug 2025</div>
+                </div>
+                <div class="exp-company">Johnson & Johnson Innovative Medicine – JLABS</div>
+                <div class="exp-desc">Built a Python ETL pipeline using public APIs to extract, clean, and normalize government grant data. Automated reporting with validation and error handling. Designed and documented a privacy-compliant workflow adopted company-wide.</div>
+                <div class="exp-tags">
+                    <span class="exp-tag">Python</span>
+                    <span class="exp-tag">APIs</span>
+                    <span class="exp-tag">ETL</span>
+                    <span class="exp-tag">Excel Automation</span>
+                </div>
+            </div>
+
+            <div class="exp-card fade-in">
+                <div class="exp-header">
+                    <div class="exp-title">Research Assistant – Data Management & Visualization</div>
+                    <div class="exp-date">Jun 2024 – Aug 2025</div>
+                </div>
+                <div class="exp-company">University of Maryland, Baltimore County</div>
+                <div class="exp-desc">Designed data mining workflows with quality control and normalization. Built analytical visualizations in Python and Tableau. Delivered publication-ready reports and documentation for cross-team alignment.</div>
+                <div class="exp-tags">
+                    <span class="exp-tag">Python</span>
+                    <span class="exp-tag">Tableau</span>
+                    <span class="exp-tag">Data Mining</span>
+                    <span class="exp-tag">Visualization</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section id="projects">
+    <div class="container">
+        <div class="section-label">What I've Built</div>
+        <h2 class="section-title">Projects</h2>
+        <div class="projects-grid">
+
+            <a class="project-card fade-in" href="#">
+                <span class="project-status status-wip">Coming Soon</span>
+                <h3>SQL Data Pipeline</h3>
+                <p>End-to-end pipeline: database design, data loading, SQL queries, and Python analysis on a public health dataset.</p>
+                <div class="exp-tags">
+                    <span class="exp-tag">Python</span>
+                    <span class="exp-tag">SQL</span>
+                    <span class="exp-tag">pandas</span>
+                </div>
+            </a>
+
+            <a class="project-card fade-in" href="#">
+                <span class="project-status status-wip">Coming Soon</span>
+                <h3>Exploratory Data Analysis in R</h3>
+                <p>Deep EDA with ggplot2 and tidyverse on a clinical or public health dataset, delivered as a polished Quarto report.</p>
+                <div class="exp-tags">
+                    <span class="exp-tag">R</span>
+                    <span class="exp-tag">ggplot2</span>
+                    <span class="exp-tag">tidyverse</span>
+                </div>
+            </a>
+
+            <a class="project-card fade-in" href="#">
+                <span class="project-status status-wip">Coming Soon</span>
+                <h3>ML Classification Project</h3>
+                <p>Full ML workflow: feature engineering, model comparison, cross-validation, and interpretable results on a real-world prediction task.</p>
+                <div class="exp-tags">
+                    <span class="exp-tag">Python</span>
+                    <span class="exp-tag">scikit-learn</span>
+                    <span class="exp-tag">XGBoost</span>
+                </div>
+            </a>
+
+            <a class="project-card fade-in" href="#">
+                <span class="project-status status-wip">Coming Soon</span>
+                <h3>Interactive Dashboard</h3>
+                <p>A Streamlit or Shiny app that lets users explore a dataset and interact with model predictions.</p>
+                <div class="exp-tags">
+                    <span class="exp-tag">Streamlit</span>
+                    <span class="exp-tag">Python</span>
+                    <span class="exp-tag">Visualization</span>
+                </div>
+            </a>
+
+        </div>
+    </div>
+</section>
+
+<section id="education">
+    <div class="container">
+        <div class="section-label">Education</div>
+        <h2 class="section-title">Background</h2>
+        <div class="edu-grid">
+            <div class="edu-card fade-in">
+                <h3>B.S. Bioinformatics & Computational Biology</h3>
+                <div class="school">University of Maryland, Baltimore County</div>
+                <div class="date">Expected May 2026 · Minor in Computer Science</div>
+            </div>
+            <div class="edu-card fade-in">
+                <h3>A.S. Biological Sciences</h3>
+                <div class="school">Montgomery College, Silver Spring</div>
+                <div class="date">Aug 2022 – May 2024</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="contact-section">
+    <div class="container">
+        <h2>Let's connect.</h2>
+        <p>I'm actively looking for data analyst, data science, and data engineering roles.</p>
+        <div class="contact-links">
+            <a href="linkedin.com/in/petra-tembei-09956a23b" class="btn-secondary" target="_blank">LinkedIn</a>
+            <a href="https://github.com/Petra-Tembei" class="btn-secondary" target="_blank">GitHub</a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 [Petra Tembei]</p>
+    </div>
+</footer>
+
+</body>
+</html>
